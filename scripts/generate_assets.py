@@ -310,7 +310,7 @@ def promo_formats(path: Path):
     img = Image.new("RGBA", (W, H), (240, 253, 250, 255))
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, W, 8], fill=TEAL_700)
-    d.text((W / 2, 92), "Paste clean tables into ChatGPT & Claude", font=font("bold", 50), fill=INK, anchor="mm")
+    d.text((W / 2, 92), "Paste clean tables into AI tools & docs", font=font("bold", 50), fill=INK, anchor="mm")
     d.text((W / 2, 150), "Perfect Markdown, Excel-ready CSV (UTF-8), TSV — free. Multi-sheet XLSX & JSON with Pro.",
            font=font("regular", 25), fill=SLATE, anchor="mm")
 
@@ -329,12 +329,12 @@ def promo_formats(path: Path):
     mono = font("mono", 22)
     for i, line in enumerate(md):
         d.text((112, 312 + i * 42), line, font=mono, fill=(226, 232, 240) if i != 1 else SLATE)
-    d.text((112, 590), "→ paste into any AI chat, Notion, GitHub…", font=font("regular", 20), fill=(148, 163, 184))
+    d.text((112, 590), "→ paste into AI tools, note-taking apps, docs…", font=font("regular", 20), fill=(148, 163, 184))
 
     # format cards
     formats = [
         ("CSV", "Excel-ready · UTF-8 BOM · ; or , separator", "FREE", TEAL_700),
-        ("Markdown", "For ChatGPT, Claude, docs & READMEs", "FREE", TEAL_700),
+        ("Markdown", "For AI tools, notes, docs & READMEs", "FREE", TEAL_700),
         ("TSV", "Paste straight into Sheets / Excel", "FREE", TEAL_700),
         ("XLSX", "Many tables → one multi-sheet workbook", "PRO", AMBER),
         ("JSON", "Structured objects, typed numbers", "PRO", AMBER),

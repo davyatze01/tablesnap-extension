@@ -8,7 +8,7 @@
     "description": "Short name (<=12 chars)"
   },
   "extDescription": {
-    "message": "Extrayez tableaux et listes web en 1 clic : CSV pour Excel, Markdown pour ChatGPT et Claude, TSV. 100 % local et privé.",
+    "message": "Extrayez tableaux HTML et listes en 1 clic : CSV pour Excel, Markdown, TSV ; Pro ajoute XLSX et JSON. 100 % local et privé.",
     "description": "Store summary (<=132 chars)"
   },
   "actionTitle": {
@@ -73,7 +73,7 @@
     "description": "Button tooltip"
   },
   "titleMarkdown": {
-    "message": "Copier en Markdown (pour ChatGPT, Claude, Notion…)",
+    "message": "Copier en Markdown (pour outils d'IA, applis de notes et documentation)",
     "description": "Button tooltip"
   },
   "titleTsv": {

@@ -1,6 +1,6 @@
 # TableSnap — Web Table & Data Extractor to Excel / Markdown
 
-Chrome / Edge Manifest V3 extension, 100% client-side. Detects tables, ARIA grids and lists on the active page and exports them as Excel-ready CSV, Markdown (for ChatGPT/Claude) or TSV for free; Pro (LemonSqueezy one-time license) adds multi-sheet XLSX, JSON, data cleaning and per-site presets.
+Chrome / Edge Manifest V3 extension, 100% client-side. Detects tables, ARIA grids and lists on the active page and exports them as Excel-ready CSV, Markdown (for AI tools, notes and docs) or TSV for free; Pro (LemonSqueezy one-time license) adds multi-sheet XLSX, JSON, data cleaning and per-site presets.
 
 ```
 src/                    extension (the only folder that gets packaged)

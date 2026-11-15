@@ -192,12 +192,12 @@ Poi in LemonSqueezy **Settings → Webhooks → +**: URL = indirizzo `https://ta
 ## 9. Testi SEO per gli store (copia e incolla)
 
 Nome e riassunto provengono già da `_locales` (lo store li legge dal pacchetto); la descrizione dettagliata va incollata a mano per ogni lingua.
-Parole chiave mirate: *table extractor, web table to excel, html table to csv, copy table markdown, web scraper tables, export table chatgpt, scrape table, table capture*.
+Parole chiave mirate: *table extractor, web table to excel, html table to csv, copy table markdown, web scraper tables, export table json, scrape table, table capture*.
 
 ### 🇬🇧 English (en)
 
 **Name:** TableSnap — Web Table & Data Extractor to Excel / Markdown
-**Summary:** Extract any web table or list in 1 click: CSV for Excel, Markdown for ChatGPT & Claude, TSV. 100% local & private.
+**Summary:** Extract HTML tables and lists in 1 click: CSV for Excel, Markdown, TSV; Pro adds XLSX and JSON. 100% local & private.
 
 **Description:**
 ```
@@ -210,7 +210,7 @@ TableSnap turns any table on any website into clean data in one click — no cop
 
 ★ FREE EXPORTS
 • CSV for Excel — UTF-8 with BOM (accents never break), correct quoting of commas and line breaks, automatic ";" separator for European Excel
-• Copy as Markdown — the perfect format to paste tables into ChatGPT, Claude, Gemini, Notion, Obsidian or GitHub
+• Copy as Markdown — clean tables to paste into AI tools, note-taking apps, documentation and READMEs
 • Copy as TSV — paste straight into Google Sheets or Excel
 
 ★ TABLESNAP PRO (one-time payment, no subscription)
@@ -222,13 +222,13 @@ TableSnap turns any table on any website into clean data in one click — no cop
 ★ PRIVATE BY DESIGN
 Everything runs 100% inside your browser. TableSnap has no servers, no analytics and no tracking. It reads a page only when you click its icon (activeTab permission) and never asks to “read all your websites”.
 
-Perfect for analysts, researchers, students, marketers, journalists and anyone who feeds data to AI assistants or spreadsheets.
+TableSnap extracts HTML tables and structured lists into CSV, Excel, JSON and Markdown — nothing more, nothing less.
 ```
 
 ### 🇮🇹 Italiano (it)
 
 **Nome:** TableSnap — Estrattore di Tabelle Web per Excel / Markdown
-**Riassunto:** Estrai tabelle e liste web in 1 clic: CSV per Excel, Markdown per ChatGPT e Claude, TSV. 100% locale e privato.
+**Riassunto:** Estrai tabelle HTML e liste in 1 clic: CSV per Excel, Markdown, TSV; Pro aggiunge XLSX e JSON. 100% locale e privato.
 
 **Descrizione:**
 ```
@@ -241,7 +241,7 @@ TableSnap trasforma qualsiasi tabella di qualsiasi sito in dati puliti con un cl
 
 ★ ESPORTAZIONI GRATUITE
 • CSV per Excel: UTF-8 con BOM (accenti sempre corretti), virgolette e a capo gestiti, separatore ";" automatico per l'Excel italiano
-• Copia in Markdown: il formato ideale per incollare tabelle in ChatGPT, Claude, Gemini, Notion, Obsidian o GitHub
+• Copia in Markdown: tabelle pulite da incollare in strumenti AI, app per appunti, documentazione e README
 • Copia in TSV: incolla direttamente in Fogli Google o Excel
 
 ★ TABLESNAP PRO (pagamento unico, nessun abbonamento)
@@ -253,13 +253,13 @@ TableSnap trasforma qualsiasi tabella di qualsiasi sito in dati puliti con un cl
 ★ PRIVACY PER PROGETTO
 Tutto avviene al 100% nel tuo browser. TableSnap non ha server, analytics né tracciamento. Legge una pagina solo quando clicchi la sua icona (permesso activeTab) e non chiede mai di “leggere tutti i tuoi siti web”.
 
-Ideale per analisti, ricercatori, studenti, marketer, giornalisti e per chi lavora con fogli di calcolo e assistenti AI.
+TableSnap estrae tabelle HTML e liste strutturate in CSV, Excel, JSON e Markdown, senza passaggi inutili.
 ```
 
 ### 🇪🇸 Español (es)
 
 **Nombre:** TableSnap — Extractor de Tablas Web a Excel / Markdown
-**Resumen:** Extrae tablas y listas web en 1 clic: CSV para Excel, Markdown para ChatGPT y Claude, TSV. 100% local y privado.
+**Resumen:** Extrae tablas HTML y listas en 1 clic: CSV para Excel, Markdown, TSV; Pro añade XLSX y JSON. 100% local y privado.
 
 **Descripción:**
 ```
@@ -272,7 +272,7 @@ TableSnap convierte cualquier tabla de cualquier web en datos limpios con un cli
 
 ★ EXPORTACIONES GRATUITAS
 • CSV para Excel: UTF-8 con BOM (los acentos nunca se rompen), comas y saltos de línea bien entrecomillados, separador ";" automático para Excel en español
-• Copiar como Markdown: el formato perfecto para pegar tablas en ChatGPT, Claude, Gemini, Notion, Obsidian o GitHub
+• Copiar como Markdown: tablas limpias para pegar en herramientas de IA, apps de notas, documentación y README
 • Copiar como TSV: pega directamente en Hojas de cálculo de Google o Excel
 
 ★ TABLESNAP PRO (pago único, sin suscripción)
@@ -284,13 +284,13 @@ TableSnap convierte cualquier tabla de cualquier web en datos limpios con un cli
 ★ PRIVACIDAD POR DISEÑO
 Todo funciona al 100% dentro de tu navegador. TableSnap no tiene servidores, analíticas ni rastreo. Solo lee una página cuando haces clic en su icono (permiso activeTab) y nunca pide “leer todos tus sitios web”.
 
-Ideal para analistas, investigadores, estudiantes, marketers, periodistas y para quien trabaja con hojas de cálculo y asistentes de IA.
+TableSnap extrae tablas HTML y listas estructuradas a CSV, Excel, JSON y Markdown, sin pasos innecesarios.
 ```
 
 ### 🇩🇪 Deutsch (de)
 
 **Name:** TableSnap — Web-Tabellen-Extraktor für Excel / Markdown
-**Kurzbeschreibung:** Web-Tabellen & Listen mit 1 Klick: CSV für Excel, Markdown für ChatGPT & Claude, TSV. 100 % lokal & privat.
+**Kurzbeschreibung:** HTML-Tabellen & Listen mit 1 Klick: CSV für Excel, Markdown, TSV; Pro ergänzt XLSX und JSON. 100 % lokal & privat.
 
 **Beschreibung:**
 ```
@@ -303,7 +303,7 @@ TableSnap verwandelt jede Tabelle auf jeder Website mit einem Klick in saubere D
 
 ★ KOSTENLOSE EXPORTE
 • CSV für Excel: UTF-8 mit BOM (Umlaute bleiben korrekt), richtige Behandlung von Kommas und Zeilenumbrüchen, automatisches „;“-Trennzeichen für deutsches Excel
-• Als Markdown kopieren: das ideale Format für Tabellen in ChatGPT, Claude, Gemini, Notion, Obsidian oder GitHub
+• Als Markdown kopieren: saubere Tabellen zum Einfügen in KI-Tools, Notiz-Apps, Dokumentationen und READMEs
 • Als TSV kopieren: direkt in Google Tabellen oder Excel einfügen
 
 ★ TABLESNAP PRO (Einmalzahlung, kein Abo)
@@ -315,13 +315,13 @@ TableSnap verwandelt jede Tabelle auf jeder Website mit einem Klick in saubere D
 ★ DATENSCHUTZ AB WERK
 Alles läuft zu 100 % in deinem Browser. TableSnap hat keine Server, keine Analytics und kein Tracking. Eine Seite wird nur gelesen, wenn du auf das Symbol klickst (activeTab-Berechtigung) – nie „alle Websites lesen“.
 
-Ideal für Analysten, Forschende, Studierende, Marketer, Journalisten und alle, die mit Tabellenkalkulationen und KI-Assistenten arbeiten.
+TableSnap extrahiert HTML-Tabellen und strukturierte Listen als CSV, Excel, JSON und Markdown – ohne Umwege.
 ```
 
 ### 🇫🇷 Français (fr)
 
 **Nom :** TableSnap — Extracteur de tableaux web vers Excel / Markdown
-**Résumé :** Extrayez tableaux et listes web en 1 clic : CSV pour Excel, Markdown pour ChatGPT et Claude, TSV. 100 % local et privé.
+**Résumé :** Extrayez tableaux HTML et listes en 1 clic : CSV pour Excel, Markdown, TSV ; Pro ajoute XLSX et JSON. 100 % local et privé.
 
 **Description :**
 ```
@@ -334,7 +334,7 @@ TableSnap transforme n'importe quel tableau de n'importe quel site en données p
 
 ★ EXPORTS GRATUITS
 • CSV pour Excel : UTF-8 avec BOM (les accents restent intacts), virgules et retours à la ligne correctement protégés, séparateur « ; » automatique pour l'Excel français
-• Copier en Markdown : le format idéal pour coller des tableaux dans ChatGPT, Claude, Gemini, Notion, Obsidian ou GitHub
+• Copier en Markdown : des tableaux propres à coller dans des outils d'IA, applis de notes, documentations et README
 • Copier en TSV : collez directement dans Google Sheets ou Excel
 
 ★ TABLESNAP PRO (paiement unique, sans abonnement)
@@ -346,13 +346,13 @@ TableSnap transforme n'importe quel tableau de n'importe quel site en données p
 ★ CONFIDENTIEL PAR CONCEPTION
 Tout fonctionne à 100 % dans votre navigateur. TableSnap n'a ni serveur, ni statistiques, ni pistage. Il ne lit une page que lorsque vous cliquez sur son icône (autorisation activeTab) et ne demande jamais à « lire tous vos sites ».
 
-Idéal pour les analystes, chercheurs, étudiants, marketeurs, journalistes et tous ceux qui travaillent avec des tableurs et des assistants IA.
+TableSnap extrait les tableaux HTML et les listes structurées en CSV, Excel, JSON et Markdown, sans étape superflue.
 ```
 
 ### 🇵🇹 Português (pt)
 
 **Nome:** TableSnap — Extrator de Tabelas Web para Excel / Markdown
-**Resumo:** Extraia tabelas e listas da web em 1 clique: CSV para Excel, Markdown para ChatGPT e Claude, TSV. 100% local e privado.
+**Resumo:** Extraia tabelas HTML e listas em 1 clique: CSV para Excel, Markdown, TSV; Pro adiciona XLSX e JSON. 100% local e privado.
 
 **Descrição:**
 ```
@@ -365,7 +365,7 @@ O TableSnap transforma qualquer tabela de qualquer site em dados limpos com um c
 
 ★ EXPORTAÇÕES GRATUITAS
 • CSV para Excel: UTF-8 com BOM (acentos sempre corretos), vírgulas e quebras de linha bem tratadas, separador ";" automático para o Excel em português
-• Copiar como Markdown: o formato perfeito para colar tabelas no ChatGPT, Claude, Gemini, Notion, Obsidian ou GitHub
+• Copiar como Markdown: tabelas limpas para colar em ferramentas de IA, apps de notas, documentação e README
 • Copiar como TSV: cole direto no Planilhas Google ou no Excel
 
 ★ TABLESNAP PRO (pagamento único, sem assinatura)
@@ -377,7 +377,7 @@ O TableSnap transforma qualquer tabela de qualquer site em dados limpos com um c
 ★ PRIVACIDADE POR PADRÃO
 Tudo funciona 100% dentro do seu navegador. O TableSnap não tem servidores, análises nem rastreamento. Ele só lê uma página quando você clica no ícone (permissão activeTab) e nunca pede para “ler todos os seus sites”.
 
-Ideal para analistas, pesquisadores, estudantes, profissionais de marketing, jornalistas e quem trabalha com planilhas e assistentes de IA.
+O TableSnap extrai tabelas HTML e listas estruturadas para CSV, Excel, JSON e Markdown, sem etapas desnecessárias.
 ```
 
 ---
