@@ -5,7 +5,7 @@
  */
 export const CONFIG = Object.freeze({
   /** LemonSqueezy checkout link of the "TableSnap Pro" product (Products → Share → Checkout URL). */
-  CHECKOUT_URL: 'https://REPLACE_WITH_STORE.lemonsqueezy.com/buy/REPLACE_WITH_VARIANT_UUID',
+  CHECKOUT_URL: 'https://tablesnap-ext.lemonsqueezy.com/checkout/buy/44c54769-2e81-4e2b-b6de-4b816e196f68',
 
   /** Review pages (fill in after the first publication, once the store IDs exist). */
   STORE_REVIEW_URL: 'https://chromewebstore.google.com/detail/REPLACE_WITH_CHROME_EXTENSION_ID/reviews',
