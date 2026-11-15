@@ -56,11 +56,39 @@ FONT_CANDIDATES = {
 }
 
 
-def font(kind: str, size: int):
+_FONT_CACHE: dict = {}
+
+
+def font(kind: str, size: int) -> ImageFont.FreeTypeFont:
+    """TrueType only (never the bitmap fallback): glyphs render at true 1:1 proportions at any size."""
+    key = (kind, size)
+    if key in _FONT_CACHE:
+        return _FONT_CACHE[key]
     for path in FONT_CANDIDATES[kind]:
         if Path(path).exists():
-            return ImageFont.truetype(path, size)
-    return ImageFont.load_default(size=size)
+            _FONT_CACHE[key] = ImageFont.truetype(path, size, layout_engine=ImageFont.Layout.BASIC)
+            return _FONT_CACHE[key]
+    fallback = ImageFont.load_default(size=size)  # Pillow >= 10.1 bundles a FreeType font
+    if not isinstance(fallback, ImageFont.FreeTypeFont):
+        raise SystemExit(f"No TrueType font found for '{kind}'. Install DejaVu or Segoe UI fonts.")
+    _FONT_CACHE[key] = fallback
+    return fallback
+
+
+def ellipsize(d, text: str, fnt, max_width: int) -> str:
+    """Shortens text with '…' instead of ever squeezing it horizontally."""
+    if d.textlength(text, font=fnt) <= max_width:
+        return text
+    while text and d.textlength(text + "…", font=fnt) > max_width:
+        text = text[:-1]
+    return text.rstrip() + "…"
+
+
+def save_exact(img: Image.Image, path: Path, size: tuple[int, int]) -> None:
+    """Guards against any accidental non-uniform scaling: the canvas must already be the target size."""
+    if img.size != size:
+        raise SystemExit(f"{path.name}: canvas {img.size} != {size} — refusing to stretch")
+    img.convert("RGB").save(path, optimize=True)
 
 
 def fit_font(d, texts, kind: str, max_size: int, max_width: int):
@@ -186,62 +214,95 @@ DATA = [
 ]
 
 
+def draw_popup_mock(img: Image.Image, px: int, py: int, w: int, h: int) -> None:
+    """Large, readable TableSnap popup (text 18-30 px at native 1:1 resolution)."""
+    shadowed_card(img, (px, py, px + w, py + h), radius=24, fill=WHITE, shadow=30)
+    d = ImageDraw.Draw(img)
+    img.alpha_composite(draw_icon(44), (px + 24, py + 22))
+    f_brand = font("bold", 30)
+    d.text((px + 80, py + 44), "TableSnap", font=f_brand, fill=INK, anchor="lm")
+    bx = px + 80 + d.textlength("TableSnap", font=f_brand) + 12
+    d.rounded_rectangle([bx, py + 31, bx + 52, py + 57], radius=13, fill=AMBER)
+    d.text((bx + 26, py + 44), "PRO", font=font("bold", 15), fill=INK, anchor="mm")
+    d.text((px + w - 26, py + 44), "3 found", font=font("semibold", 22), fill=TEAL_700, anchor="rm")
+    d.line([(px + 20, py + 86), (px + w - 20, py + 86)], fill=(226, 232, 240), width=2)
+
+    items = (("Table 1 · Statistics 2025", "5 rows × 3 cols · <table>", True),
+             ("List 2 · Sources", "4 rows × 1 col · <ul>", False),
+             ("Grid 3 · Team members", "3 rows × 2 cols · <div>", True))
+    f_title, f_meta, f_chip = font("semibold", 23), font("regular", 18), font("bold", 17)
+    chip_w, chip_h, gap = 62, 38, 8
+    for i, (title, meta, on) in enumerate(items):
+        yy = py + 102 + i * 102
+        d.rounded_rectangle([px + 20, yy, px + w - 20, yy + 90], radius=14,
+                            fill=(230, 246, 244) if on else (246, 248, 250),
+                            outline=TEAL_500 if on else (221, 227, 232), width=2)
+        cb = (px + 40, yy + 33, px + 64, yy + 57)
+        if on:
+            d.rounded_rectangle(cb, radius=6, fill=TEAL_700)
+            d.line([(cb[0] + 6, cb[1] + 12), (cb[0] + 10, cb[1] + 17), (cb[0] + 18, cb[1] + 7)], fill=WHITE, width=3)
+        else:
+            d.rounded_rectangle(cb, radius=6, fill=WHITE, outline=(148, 163, 184), width=2)
+        chips_x0 = px + w - 40 - (3 * chip_w + 2 * gap)
+        tx = px + 82
+        d.text((tx, yy + 32), ellipsize(d, title, f_title, chips_x0 - tx - 16), font=f_title, fill=INK, anchor="lm")
+        d.text((tx, yy + 63), ellipsize(d, meta, f_meta, chips_x0 - tx - 16), font=f_meta, fill=SLATE, anchor="lm")
+        for k, lab in enumerate(("CSV", "MD", "TSV")):
+            cx = chips_x0 + k * (chip_w + gap)
+            d.rounded_rectangle([cx, yy + 26, cx + chip_w, yy + 26 + chip_h], radius=8, fill=WHITE, outline=(203, 213, 225), width=2)
+            d.text((cx + chip_w / 2, yy + 26 + chip_h / 2), lab, font=f_chip, fill=INK, anchor="mm")
+    by = py + 102 + 3 * 102 + 4
+    d.rounded_rectangle([px + 20, by, px + w - 20, by + 54], radius=12, fill=TEAL_700)
+    d.text((px + w / 2, by + 27), "Selected → Excel (.xlsx)", font=font("bold", 22), fill=WHITE, anchor="mm")
+
+
 def promo_hero(path: Path):
     W, H = 1280, 800
     img = gradient((W, H), TEAL_900, TEAL_700).convert("RGBA")
+    dots = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dd = ImageDraw.Draw(dots)
+    for yy in range(16, H, 32):
+        for xx in range(16, W, 32):
+            dd.ellipse([xx, yy, xx + 2, yy + 2], fill=(255, 255, 255, 22))
+    img.alpha_composite(dots)
     d = ImageDraw.Draw(img)
-    # dotted texture
-    for yy in range(0, H, 32):
-        for xx in range(0, W, 32):
-            d.ellipse([xx, yy, xx + 2, yy + 2], fill=(255, 255, 255, 18))
-    icon = draw_icon(128).resize((96, 96), Image.LANCZOS)
-    img.alpha_composite(icon, (72, 84))
-    d.text((186, 132), "TableSnap", font=font("bold", 54), fill=WHITE, anchor="lm")
-    max_w = 580
-    lines = [("Any web table →", WHITE), ("Excel, CSV &", TEAL_300), ("Markdown, 1 click.", WHITE)]
-    head = fit_font(d, [l for l, _ in lines], "bold", 64, max_w)
-    for i, (text, color) in enumerate(lines):
-        d.text((72, 236 + i * (head.size + 14)), text, font=head, fill=color)
-    sub_lines = ["Detects every table & list on the page.", "CSV for Excel · Markdown for ChatGPT & Claude."]
-    body = fit_font(d, sub_lines, "regular", 26, max_w)
-    for i, text in enumerate(sub_lines):
-        d.text((72, 500 + i * 38), text, font=body, fill=(204, 251, 241))
-    x = 72
-    for label in ("100% local", "No sign-up", "No tracking"):
-        x = pill(d, (x, 618), label, font("semibold", 22), TEAL_800, WHITE) + 14
 
-    # browser mock
-    bx0, by0, bx1, by1 = 690, 120, 1220, 690
+    # left column: brand, headline, subtitle, pills (max 470 px wide, never overlaps the mockups)
+    left, max_w = 64, 470
+    img.alpha_composite(draw_icon(84), (left, 70))
+    d.text((left + 102, 112), "TableSnap", font=font("bold", 46), fill=WHITE, anchor="lm")
+    lines = [("Any web table →", WHITE), ("Excel, CSV &", TEAL_300), ("Markdown, 1 click.", WHITE)]
+    head = fit_font(d, [l for l, _ in lines], "bold", 62, max_w)
+    y = 214
+    for text, color in lines:
+        d.text((left, y), text, font=head, fill=color)
+        y += head.size + 14
+    sub = ["Detects every table & list on the page.", "CSV for Excel · Markdown for AI chats."]
+    body = fit_font(d, sub, "regular", 25, max_w)
+    y += 22
+    for text in sub:
+        d.text((left, y), text, font=body, fill=(204, 251, 241))
+        y += body.size + 12
+    x, y = left, y + 26
+    for label in ("100% local", "No sign-up", "No tracking"):
+        x = pill(d, (x, y), label, font("semibold", 20), TEAL_800, WHITE) + 12
+
+    # browser window with the highlighted table
+    bx0, by0, bx1, by1 = 584, 50, 1236, 470
     shadowed_card(img, (bx0, by0, bx1, by1), radius=20, fill=PAPER)
     d = ImageDraw.Draw(img)
-    d.rounded_rectangle([bx0, by0, bx1, by0 + 46], radius=20, fill=(226, 232, 240))
-    d.rectangle([bx0, by0 + 26, bx1, by0 + 46], fill=(226, 232, 240))
+    d.rounded_rectangle([bx0, by0, bx1, by0 + 48], radius=20, fill=(226, 232, 240))
+    d.rectangle([bx0, by0 + 28, bx1, by0 + 48], fill=(226, 232, 240))
     for i, c in enumerate(((248, 113, 113), (251, 191, 36), (52, 211, 153))):
-        d.ellipse([bx0 + 20 + i * 24, by0 + 16, bx0 + 34 + i * 24, by0 + 30], fill=c)
-    d.rounded_rectangle([bx0 + 100, by0 + 11, bx1 - 20, by0 + 35], radius=12, fill=WHITE)
-    d.text((bx0 + 116, by0 + 23), "example.org/statistics", font=font("regular", 16), fill=SLATE, anchor="lm")
-    d.text((bx0 + 36, by0 + 82), "European statistics 2025", font=font("bold", 26), fill=INK, anchor="lm")
-    draw_mock_table(d, bx0 + 36, by0 + 120, 152, 46, DATA, highlight=True)
-    # popup mock
-    px0, py0 = 790, 488
-    shadowed_card(img, (px0, py0, px0 + 400, py0 + 230), radius=18, fill=WHITE, shadow=24)
-    d = ImageDraw.Draw(img)
-    img.alpha_composite(draw_icon(48).resize((30, 30), Image.LANCZOS), (px0 + 20, py0 + 18))
-    d.text((px0 + 60, py0 + 33), "TableSnap", font=font("bold", 22), fill=INK, anchor="lm")
-    d.text((px0 + 290, py0 + 33), "3 found", font=font("semibold", 18), fill=TEAL_700, anchor="lm")
-    for i, (title, meta) in enumerate((("Table 1 · European statistics", "6 rows × 3 cols"), ("List 2 · Sources", "4 rows × 1 col"))):
-        yy = py0 + 66 + i * 76
-        d.rounded_rectangle([px0 + 16, yy, px0 + 384, yy + 64], radius=10,
-                            fill=(230, 246, 244) if i == 0 else (246, 248, 250), outline=TEAL_500 if i == 0 else (221, 227, 232), width=2)
-        d.text((px0 + 32, yy + 20), title, font=font("semibold", 17), fill=INK, anchor="lm")
-        d.text((px0 + 32, yy + 44), meta, font=font("regular", 15), fill=SLATE, anchor="lm")
-        cx = px0 + 246
-        for lab in ("CSV", "MD", "TSV"):
-            if i == 0:
-                d.rounded_rectangle([cx, yy + 34, cx + 40, yy + 56], radius=6, fill=WHITE, outline=(203, 213, 225))
-                d.text((cx + 20, yy + 45), lab, font=font("bold", 13), fill=INK, anchor="mm")
-            cx += 46
-    img.convert("RGB").save(path, optimize=True)
+        d.ellipse([bx0 + 20 + i * 24, by0 + 17, bx0 + 34 + i * 24, by0 + 31], fill=c)
+    d.rounded_rectangle([bx0 + 100, by0 + 12, bx1 - 20, by0 + 36], radius=12, fill=WHITE)
+    d.text((bx0 + 116, by0 + 24), "example.org/statistics", font=font("regular", 16), fill=SLATE, anchor="lm")
+    d.text((bx0 + 34, by0 + 84), "European statistics 2025", font=font("bold", 26), fill=INK, anchor="lm")
+    draw_mock_table(d, bx0 + 34, by0 + 118, (bx1 - bx0 - 68) // 3, 44, DATA[:5], highlight=True)
+
+    # big popup in front
+    draw_popup_mock(img, 616, 284, 600, 488)
+    save_exact(img, path, (W, H))
 
 
 def promo_formats(path: Path):
@@ -292,18 +353,18 @@ def promo_formats(path: Path):
     x = 330
     for label in ("Runs 100% in your browser", "No account", "One-time Pro license"):
         x = pill(d, (x, 700), label, font("semibold", 20), (204, 251, 241), TEAL_800) + 16
-    img.convert("RGB").save(path, optimize=True)
+    save_exact(img, path, (W, H))
 
 
 def small_tile(path: Path):
     W, H = 440, 280
     img = gradient((W, H), TEAL_800, TEAL_500).convert("RGBA")
     d = ImageDraw.Draw(img)
-    img.alpha_composite(draw_icon(128).resize((88, 88), Image.LANCZOS), (36, 40))
+    img.alpha_composite(draw_icon(88), (36, 40))
     d.text((140, 84), "TableSnap", font=font("bold", 44), fill=WHITE, anchor="lm")
     d.text((36, 170), "Web tables → Excel,", font=font("bold", 28), fill=WHITE)
     d.text((36, 206), "CSV & Markdown in 1 click", font=font("bold", 28), fill=(204, 251, 241))
-    img.convert("RGB").save(path, optimize=True)
+    save_exact(img, path, (W, H))
 
 
 def main():
