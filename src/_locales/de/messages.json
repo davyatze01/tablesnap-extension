@@ -1,0 +1,318 @@
+{
+  "extName": {
+    "message": "TableSnap — Web-Tabellen-Extraktor für Excel / Markdown",
+    "description": "Store/extension name (<=75 chars)"
+  },
+  "extShortName": {
+    "message": "TableSnap",
+    "description": "Short name (<=12 chars)"
+  },
+  "extDescription": {
+    "message": "Web-Tabellen & Listen mit 1 Klick: CSV für Excel, Markdown für ChatGPT & Claude, TSV. 100 % lokal & privat.",
+    "description": "Store summary (<=132 chars)"
+  },
+  "actionTitle": {
+    "message": "TableSnap: Tabellen dieser Seite extrahieren",
+    "description": "Toolbar button tooltip"
+  },
+  "rescan": {
+    "message": "Seite neu scannen",
+    "description": "Rescan button"
+  },
+  "scanning": {
+    "message": "Seite wird gescannt…",
+    "description": "Status while scanning"
+  },
+  "noTables": {
+    "message": "Keine Tabellen oder Listen auf dieser Seite gefunden.",
+    "description": "No results"
+  },
+  "restrictedPage": {
+    "message": "TableSnap kann diese Seite nicht lesen (Browser- und Store-Seiten sind geschützt).",
+    "description": "Protected page"
+  },
+  "tablesFound": {
+    "message": "$COUNT$ gefunden",
+    "description": "Detected count",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "hoverHint": {
+    "message": "Zum Hervorheben überfahren",
+    "description": "Hint"
+  },
+  "kindTable": {
+    "message": "Tabelle",
+    "description": "Item kind"
+  },
+  "kindList": {
+    "message": "Liste",
+    "description": "Item kind"
+  },
+  "kindGrid": {
+    "message": "Raster",
+    "description": "Item kind (ARIA grid)"
+  },
+  "rows": {
+    "message": "Zeilen",
+    "description": "Unit"
+  },
+  "cols": {
+    "message": "Sp.",
+    "description": "Unit"
+  },
+  "columnLabel": {
+    "message": "Spalte",
+    "description": "Generic Markdown header"
+  },
+  "titleCsv": {
+    "message": "CSV herunterladen (Excel-fertig, UTF-8)",
+    "description": "Button tooltip"
+  },
+  "titleMarkdown": {
+    "message": "Als Markdown kopieren (für ChatGPT, Claude, Notion…)",
+    "description": "Button tooltip"
+  },
+  "titleTsv": {
+    "message": "Als TSV kopieren (für Excel / Google Tabellen)",
+    "description": "Button tooltip"
+  },
+  "titlePreview": {
+    "message": "Vorschau anzeigen",
+    "description": "Button tooltip"
+  },
+  "previewMore": {
+    "message": "… und $COUNT$ weitere Zeilen",
+    "description": "Preview footer",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optFirstRowHeader": {
+    "message": "Erste Zeile = Kopfzeile",
+    "description": "Option"
+  },
+  "csvSeparator": {
+    "message": "CSV-Trennzeichen",
+    "description": "Option label"
+  },
+  "sepAuto": {
+    "message": "Auto (Excel)",
+    "description": "Separator option"
+  },
+  "sepComma": {
+    "message": "Komma ,",
+    "description": "Separator option"
+  },
+  "sepSemicolon": {
+    "message": "Semikolon ;",
+    "description": "Separator option"
+  },
+  "sepTab": {
+    "message": "Tab",
+    "description": "Separator option"
+  },
+  "downloadedCsv": {
+    "message": "CSV heruntergeladen!",
+    "description": "Toast"
+  },
+  "downloadedFile": {
+    "message": "Datei heruntergeladen!",
+    "description": "Toast"
+  },
+  "copiedMarkdown": {
+    "message": "Markdown kopiert – in deinen KI-Chat einfügen!",
+    "description": "Toast"
+  },
+  "copiedTsv": {
+    "message": "TSV kopiert – in deine Tabelle einfügen!",
+    "description": "Toast"
+  },
+  "exportFailed": {
+    "message": "Export fehlgeschlagen:",
+    "description": "Toast prefix"
+  },
+  "clipboardFailed": {
+    "message": "Kein Zugriff auf die Zwischenablage.",
+    "description": "Toast"
+  },
+  "emptyAfterCleaning": {
+    "message": "Nach Bereinigung/Filter bleibt nichts zum Exportieren.",
+    "description": "Toast"
+  },
+  "proTitle": {
+    "message": "Pro-Werkzeuge",
+    "description": "Section title"
+  },
+  "selectAll": {
+    "message": "Alle auswählen",
+    "description": "Checkbox"
+  },
+  "selectedCount": {
+    "message": "$COUNT$ ausgewählt",
+    "description": "Counter",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selectAtLeastOne": {
+    "message": "Wähle zuerst mindestens eine Tabelle aus.",
+    "description": "Toast"
+  },
+  "proLockedText": {
+    "message": "Pro freischalten: Multi-Tabellen-Export als XLSX & JSON, Bereinigung, Regex-Filter und Presets pro Website. Einmalzahlung, kein Abo.",
+    "description": "Upsell"
+  },
+  "buyPro": {
+    "message": "Pro holen — einmalig",
+    "description": "Button"
+  },
+  "haveKey": {
+    "message": "Ich habe einen Lizenzschlüssel",
+    "description": "Button"
+  },
+  "licenseKeyPlaceholder": {
+    "message": "Lizenzschlüssel einfügen",
+    "description": "Input placeholder"
+  },
+  "activate": {
+    "message": "Aktivieren",
+    "description": "Button"
+  },
+  "activating": {
+    "message": "Aktiviere…",
+    "description": "Button busy"
+  },
+  "licenseActivated": {
+    "message": "Pro freigeschaltet – danke!",
+    "description": "Toast"
+  },
+  "licenseActive": {
+    "message": "Pro aktiv",
+    "description": "Status"
+  },
+  "licenseInvalid": {
+    "message": "Dieser Lizenzschlüssel ist ungültig (oder wurde deaktiviert/erstattet).",
+    "description": "Error"
+  },
+  "licenseFormat": {
+    "message": "Das sieht nicht wie ein Lizenzschlüssel aus.",
+    "description": "Error"
+  },
+  "licenseNetwork": {
+    "message": "Lizenzserver nicht erreichbar. Verbindung prüfen und erneut versuchen.",
+    "description": "Error"
+  },
+  "licenseLimit": {
+    "message": "Aktivierungslimit erreicht. Entferne die Lizenz zuerst aus einem anderen Browser.",
+    "description": "Error"
+  },
+  "licenseWrongProduct": {
+    "message": "Dieser Schlüssel gehört zu einem anderen Produkt.",
+    "description": "Error"
+  },
+  "licenseExpiredOffline": {
+    "message": "Pro pausiert: Lizenz seit 30 Tagen nicht geprüft. Geh online und öffne TableSnap erneut.",
+    "description": "Error"
+  },
+  "removeLicense": {
+    "message": "Lizenz entfernen",
+    "description": "Link"
+  },
+  "licenseRemoved": {
+    "message": "Lizenz aus diesem Browser entfernt.",
+    "description": "Toast"
+  },
+  "cleaningTitle": {
+    "message": "Erweiterte Bereinigung (für jeden Export)",
+    "description": "Fieldset legend"
+  },
+  "optRemoveEmpty": {
+    "message": "Leere Zeilen entfernen",
+    "description": "Option"
+  },
+  "optNormalizeSpaces": {
+    "message": "Leerzeichen & Umbrüche normalisieren",
+    "description": "Option"
+  },
+  "optStripNumeric": {
+    "message": "Zahlenspalten bereinigen (€, $, %, Einheiten entfernen)",
+    "description": "Option"
+  },
+  "optRegex": {
+    "message": "Regex-Zeilenfilter",
+    "description": "Aria label"
+  },
+  "regexPlaceholder": {
+    "message": "Regex-Filter, z. B. ^Deutschland|2025",
+    "description": "Input placeholder"
+  },
+  "regexKeep": {
+    "message": "Behalten",
+    "description": "Select option"
+  },
+  "regexExclude": {
+    "message": "Ausschließen",
+    "description": "Select option"
+  },
+  "invalidRegex": {
+    "message": "Ungültiger regulärer Ausdruck.",
+    "description": "Error"
+  },
+  "exportXlsx": {
+    "message": "Auswahl → Excel (.xlsx)",
+    "description": "Button"
+  },
+  "exportJson": {
+    "message": "Auswahl → JSON",
+    "description": "Button"
+  },
+  "presetNote": {
+    "message": "Einstellungen gespeichert für $DOMAIN$",
+    "description": "Preset status",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "presetReset": {
+    "message": "Website-Preset zurücksetzen",
+    "description": "Link"
+  },
+  "presetCleared": {
+    "message": "Website-Preset entfernt.",
+    "description": "Toast"
+  },
+  "reviewPrompt": {
+    "message": "5 Tabellen extrahiert! Wenn TableSnap dir Zeit spart, hilft eine kurze Bewertung sehr ⭐",
+    "description": "Review banner"
+  },
+  "reviewCta": {
+    "message": "Bewertung schreiben",
+    "description": "Button"
+  },
+  "reviewDismiss": {
+    "message": "Nicht jetzt",
+    "description": "Button"
+  },
+  "privacyNote": {
+    "message": "100 % lokal – deine Daten verlassen nie den Browser.",
+    "description": "Footer"
+  },
+  "linkWebsite": {
+    "message": "Website",
+    "description": "Footer link"
+  },
+  "linkPrivacy": {
+    "message": "Datenschutz",
+    "description": "Footer link"
+  }
+}

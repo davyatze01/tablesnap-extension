@@ -1,0 +1,10 @@
+{
+  "name": "tablesnap-extension",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "TableSnap — Chrome/Edge MV3 extension. Build & tests are driven by Python: python scripts/build.py",
+  "scripts": {
+    "test:js": "node --test tests/js/"
+  }
+}

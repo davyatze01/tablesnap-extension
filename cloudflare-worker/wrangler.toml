@@ -1,0 +1,9 @@
+name = "tablesnap-webhook"
+main = "webhook.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+# Secrets are NOT stored here. Set them with:
+#   npx wrangler secret put LEMONSQUEEZY_WEBHOOK_SECRET
+#   npx wrangler secret put TELEGRAM_BOT_TOKEN
+#   npx wrangler secret put TELEGRAM_CHAT_ID

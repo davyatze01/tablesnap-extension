@@ -1,0 +1,318 @@
+{
+  "extName": {
+    "message": "TableSnap — Web Table & Data Extractor to Excel / Markdown",
+    "description": "Store/extension name (<=75 chars)"
+  },
+  "extShortName": {
+    "message": "TableSnap",
+    "description": "Short name (<=12 chars)"
+  },
+  "extDescription": {
+    "message": "Extract any web table or list in 1 click: CSV for Excel, Markdown for ChatGPT & Claude, TSV. 100% local & private.",
+    "description": "Store summary (<=132 chars)"
+  },
+  "actionTitle": {
+    "message": "TableSnap: extract tables from this page",
+    "description": "Toolbar button tooltip"
+  },
+  "rescan": {
+    "message": "Rescan page",
+    "description": "Rescan button"
+  },
+  "scanning": {
+    "message": "Scanning page…",
+    "description": "Status while scanning"
+  },
+  "noTables": {
+    "message": "No tables or lists found on this page.",
+    "description": "No results"
+  },
+  "restrictedPage": {
+    "message": "TableSnap can't read this page (browser and store pages are protected).",
+    "description": "Protected page"
+  },
+  "tablesFound": {
+    "message": "$COUNT$ found",
+    "description": "Detected count",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "hoverHint": {
+    "message": "Hover to highlight on page",
+    "description": "Hint"
+  },
+  "kindTable": {
+    "message": "Table",
+    "description": "Item kind"
+  },
+  "kindList": {
+    "message": "List",
+    "description": "Item kind"
+  },
+  "kindGrid": {
+    "message": "Grid",
+    "description": "Item kind (ARIA grid)"
+  },
+  "rows": {
+    "message": "rows",
+    "description": "Unit"
+  },
+  "cols": {
+    "message": "cols",
+    "description": "Unit"
+  },
+  "columnLabel": {
+    "message": "Column",
+    "description": "Generic Markdown header"
+  },
+  "titleCsv": {
+    "message": "Download CSV (Excel-ready, UTF-8)",
+    "description": "Button tooltip"
+  },
+  "titleMarkdown": {
+    "message": "Copy as Markdown (paste into ChatGPT, Claude, Notion…)",
+    "description": "Button tooltip"
+  },
+  "titleTsv": {
+    "message": "Copy as TSV (paste into Excel / Google Sheets)",
+    "description": "Button tooltip"
+  },
+  "titlePreview": {
+    "message": "Show preview",
+    "description": "Button tooltip"
+  },
+  "previewMore": {
+    "message": "… and $COUNT$ more rows",
+    "description": "Preview footer",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optFirstRowHeader": {
+    "message": "First row is header",
+    "description": "Option"
+  },
+  "csvSeparator": {
+    "message": "CSV separator",
+    "description": "Option label"
+  },
+  "sepAuto": {
+    "message": "Auto (Excel)",
+    "description": "Separator option"
+  },
+  "sepComma": {
+    "message": "Comma ,",
+    "description": "Separator option"
+  },
+  "sepSemicolon": {
+    "message": "Semicolon ;",
+    "description": "Separator option"
+  },
+  "sepTab": {
+    "message": "Tab",
+    "description": "Separator option"
+  },
+  "downloadedCsv": {
+    "message": "CSV downloaded!",
+    "description": "Toast"
+  },
+  "downloadedFile": {
+    "message": "File downloaded!",
+    "description": "Toast"
+  },
+  "copiedMarkdown": {
+    "message": "Markdown copied — paste it into your AI chat!",
+    "description": "Toast"
+  },
+  "copiedTsv": {
+    "message": "TSV copied — paste it into your spreadsheet!",
+    "description": "Toast"
+  },
+  "exportFailed": {
+    "message": "Export failed:",
+    "description": "Toast prefix"
+  },
+  "clipboardFailed": {
+    "message": "Couldn't access the clipboard.",
+    "description": "Toast"
+  },
+  "emptyAfterCleaning": {
+    "message": "Nothing left to export after cleaning/filtering.",
+    "description": "Toast"
+  },
+  "proTitle": {
+    "message": "Pro tools",
+    "description": "Section title"
+  },
+  "selectAll": {
+    "message": "Select all",
+    "description": "Checkbox"
+  },
+  "selectedCount": {
+    "message": "$COUNT$ selected",
+    "description": "Counter",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "selectAtLeastOne": {
+    "message": "Select at least one table first.",
+    "description": "Toast"
+  },
+  "proLockedText": {
+    "message": "Unlock Pro: multi-table XLSX & JSON export, advanced cleaning, regex filters and per-site presets. One-time payment, no subscription.",
+    "description": "Upsell"
+  },
+  "buyPro": {
+    "message": "Get Pro — one-time",
+    "description": "Button"
+  },
+  "haveKey": {
+    "message": "I have a license key",
+    "description": "Button"
+  },
+  "licenseKeyPlaceholder": {
+    "message": "Paste your license key",
+    "description": "Input placeholder"
+  },
+  "activate": {
+    "message": "Activate",
+    "description": "Button"
+  },
+  "activating": {
+    "message": "Activating…",
+    "description": "Button busy"
+  },
+  "licenseActivated": {
+    "message": "Pro unlocked — thank you!",
+    "description": "Toast"
+  },
+  "licenseActive": {
+    "message": "Pro active",
+    "description": "Status"
+  },
+  "licenseInvalid": {
+    "message": "This license key is not valid (or has been disabled/refunded).",
+    "description": "Error"
+  },
+  "licenseFormat": {
+    "message": "That doesn't look like a license key.",
+    "description": "Error"
+  },
+  "licenseNetwork": {
+    "message": "Couldn't reach the license server. Check your connection and retry.",
+    "description": "Error"
+  },
+  "licenseLimit": {
+    "message": "Activation limit reached. Remove the license from another browser first.",
+    "description": "Error"
+  },
+  "licenseWrongProduct": {
+    "message": "This key belongs to a different product.",
+    "description": "Error"
+  },
+  "licenseExpiredOffline": {
+    "message": "Pro paused: the license couldn't be verified for 30 days. Go online and reopen TableSnap.",
+    "description": "Error"
+  },
+  "removeLicense": {
+    "message": "Remove license",
+    "description": "Link"
+  },
+  "licenseRemoved": {
+    "message": "License removed from this browser.",
+    "description": "Toast"
+  },
+  "cleaningTitle": {
+    "message": "Advanced cleaning (applies to every export)",
+    "description": "Fieldset legend"
+  },
+  "optRemoveEmpty": {
+    "message": "Remove empty rows",
+    "description": "Option"
+  },
+  "optNormalizeSpaces": {
+    "message": "Normalize spaces & line breaks",
+    "description": "Option"
+  },
+  "optStripNumeric": {
+    "message": "Clean numeric columns (strip €, $, %, units)",
+    "description": "Option"
+  },
+  "optRegex": {
+    "message": "Regex row filter",
+    "description": "Aria label"
+  },
+  "regexPlaceholder": {
+    "message": "Regex row filter, e.g. ^Italy|2025",
+    "description": "Input placeholder"
+  },
+  "regexKeep": {
+    "message": "Keep matches",
+    "description": "Select option"
+  },
+  "regexExclude": {
+    "message": "Exclude matches",
+    "description": "Select option"
+  },
+  "invalidRegex": {
+    "message": "Invalid regular expression.",
+    "description": "Error"
+  },
+  "exportXlsx": {
+    "message": "Selected → Excel (.xlsx)",
+    "description": "Button"
+  },
+  "exportJson": {
+    "message": "Selected → JSON",
+    "description": "Button"
+  },
+  "presetNote": {
+    "message": "Settings auto-saved for $DOMAIN$",
+    "description": "Preset status",
+    "placeholders": {
+      "domain": {
+        "content": "$1"
+      }
+    }
+  },
+  "presetReset": {
+    "message": "Reset site preset",
+    "description": "Link"
+  },
+  "presetCleared": {
+    "message": "Site preset removed.",
+    "description": "Toast"
+  },
+  "reviewPrompt": {
+    "message": "5 tables snapped! If TableSnap saved you time, a quick review helps a lot ⭐",
+    "description": "Review banner"
+  },
+  "reviewCta": {
+    "message": "Leave a review",
+    "description": "Button"
+  },
+  "reviewDismiss": {
+    "message": "Not now",
+    "description": "Button"
+  },
+  "privacyNote": {
+    "message": "100% local — your data never leaves the browser.",
+    "description": "Footer"
+  },
+  "linkWebsite": {
+    "message": "Website",
+    "description": "Footer link"
+  },
+  "linkPrivacy": {
+    "message": "Privacy",
+    "description": "Footer link"
+  }
+}

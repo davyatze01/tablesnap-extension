@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TableSnap Privacy Policy</title>
+  <meta name="author" content="Davide Atzeni">
+  <meta name="description" content="TableSnap processes web tables 100% locally in your browser. No data collection, no analytics, no servers.">
+  <link rel="icon" href="assets/favicon.png">
+  <style>
+    :root { --bg: #ffffff; --surface: #f4f8f8; --border: #dbe5e5; --text: #0f172a; --muted: #536173; --brand: #0f766e; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #0d1217; --surface: #151d24; --border: #263340; --text: #e6edf3; --muted: #95a4b4; --brand: #2dd4bf; }
+    }
+    :root[data-theme="dark"] { --bg: #0d1217; --surface: #151d24; --border: #263340; --text: #e6edf3; --muted: #95a4b4; --brand: #2dd4bf; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.65 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+    a { color: var(--brand); }
+    header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    header img { width: 36px; height: 36px; }
+    h1 { font-size: 32px; margin: 0 0 4px; }
+    h2 { font-size: 21px; margin-top: 36px; }
+    .muted { color: var(--muted); }
+    .box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th, td { text-align: left; border-bottom: 1px solid var(--border); padding: 8px 6px; vertical-align: top; }
+    code { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; font-size: .9em; }
+    @media (max-width: 600px) { table { font-size: 14px; } th, td { padding: 6px 4px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header><img src="assets/icon128.png" alt=""><a href="index.html"><strong>TableSnap</strong></a></header>
+  <h1>Privacy Policy</h1>
+  <p class="muted">Last updated: 15 November 2026 · Applies to the TableSnap extension for Chrome and Microsoft Edge and to this website.</p>
+
+  <div class="box">
+    <strong>Summary:</strong> TableSnap works 100% locally in your browser. It does not collect, sell, share or transmit the content of the pages you visit or the tables you export. It has no servers, no analytics, no advertising and no cookies. The only network request is license activation/validation with LemonSqueezy, made only if you buy and activate TableSnap Pro.
+  </div>
+
+  <h2>1. Data controller</h2>
+  <p>Davide Atzeni (“we”), developer of TableSnap. Contact: <a href="https://github.com/davyatze01/tablesnap-extension/issues">GitHub Issues</a> of the <a href="https://github.com/davyatze01/tablesnap-extension">tablesnap-extension</a> repository.</p>
+
+  <h2>2. What the extension processes, and where</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Purpose</th><th>Where it stays</th></tr></thead>
+    <tbody>
+      <tr><td>Tables and lists of the page you are viewing</td><td>Detect, preview and convert them to CSV / Markdown / TSV / XLSX / JSON when you click the TableSnap icon</td><td>Only in your browser's memory; the files are generated locally and saved to your device or clipboard by you</td></tr>
+      <tr><td>Your settings and per-site presets (website host name + options)</td><td>Remember your preferences</td><td><code>chrome.storage.local</code> on your device</td></tr>
+      <tr><td>Number of exports and whether the review message was shown</td><td>Show a single “leave a review” message after 5 exports</td><td><code>chrome.storage.local</code> on your device; never transmitted</td></tr>
+      <tr><td>License key, activation ID, validation date (Pro only)</td><td>Unlock and keep Pro active</td><td><code>chrome.storage.local</code> on your device and LemonSqueezy (see §3)</td></tr>
+    </tbody>
+  </table>
+  <p>TableSnap reads a page only after you click its icon (Chrome's <code>activeTab</code> permission) and only that tab. It does not run in the background on the sites you visit and does not access your browsing history.</p>
+
+  <h2>3. LemonSqueezy (Pro licenses and payments)</h2>
+  <p>Purchases are processed by <a href="https://www.lemonsqueezy.com/">LemonSqueezy</a>, which acts as merchant of record and handles payment, invoicing and VAT. Your payment and billing data are provided directly to LemonSqueezy under <a href="https://www.lemonsqueezy.com/privacy">its privacy policy</a>; we receive the order details needed to manage sales (e.g. name, e-mail, country, amount).</p>
+  <p>When you activate Pro, the extension sends to <code>api.lemonsqueezy.com</code>: the license key and a random instance name (e.g. “TableSnap Chrome a1b2c3”). About every 7 days it re-validates the key by sending the license key and instance ID. No page content is ever sent. Legal basis: performance of a contract (Art. 6(1)(b) GDPR).</p>
+
+  <h2>4. What we do not do</h2>
+  <ul>
+    <li>No analytics, telemetry, tracking pixels or fingerprinting.</li>
+    <li>No sale or transfer of data to third parties; no use for advertising, credit-worthiness or lending.</li>
+    <li>No remote code: all code ships inside the extension package.</li>
+  </ul>
+  <p>The use of information received from Google APIs complies with the <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Chrome Web Store User Data Policy</a>, including the Limited Use requirements.</p>
+
+  <h2>5. Retention and deletion</h2>
+  <p>Local data stays on your device until you remove it: use “Reset site preset” / “Remove license” in the popup, or uninstall the extension (which deletes all of its local storage). Order records are kept by LemonSqueezy and by us for as long as required by tax law.</p>
+
+  <h2>6. Your rights (GDPR)</h2>
+  <p>You have the right to access, rectify, erase, restrict and port your personal data and to object to its processing, by contacting us through the channel above (please don't post personal data in a public issue: ask for a private contact instead). You can also lodge a complaint with your data-protection supervisory authority (in Italy: Garante per la protezione dei dati personali, <a href="https://www.garanteprivacy.it">garanteprivacy.it</a>).</p>
+
+  <h2>7. This website</h2>
+  <p>This site is static and hosted on GitHub Pages. It uses no cookies and no analytics. GitHub may process technical data such as IP addresses in server logs for security purposes (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub privacy statement</a>).</p>
+
+  <h2>8. Children</h2>
+  <p>TableSnap is not directed to children under 16 and does not knowingly process their data.</p>
+
+  <h2>9. Changes</h2>
+  <p>We will publish any change on this page and update the date above.</p>
+</main>
+</body>
+</html>

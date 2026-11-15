@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TableSnap</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <img class="logo" src="../icons/icon48.png" alt="" width="22" height="22" />
+      <span class="brand">TableSnap</span>
+      <span id="proBadge" class="badge" hidden>PRO</span>
+      <span class="spacer"></span>
+      <button id="rescanBtn" class="icon-btn" type="button" data-i18n-title="rescan" data-i18n-aria="rescan">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      </button>
+    </header>
+
+    <div id="reviewBanner" class="banner" hidden>
+      <p data-i18n="reviewPrompt"></p>
+      <div class="banner-actions">
+        <a id="reviewLink" class="btn btn-primary btn-sm" target="_blank" rel="noopener" data-i18n="reviewCta"></a>
+        <button id="reviewDismiss" class="btn btn-ghost btn-sm" type="button" data-i18n="reviewDismiss"></button>
+      </div>
+    </div>
+
+    <main>
+      <div class="status-row">
+        <span id="status" role="status" aria-live="polite"></span>
+        <span id="hoverHint" class="hint" data-i18n="hoverHint" hidden></span>
+      </div>
+
+      <div class="options-row">
+        <label class="check"><input type="checkbox" id="optHeader" /> <span data-i18n="optFirstRowHeader"></span></label>
+        <label class="select-label">
+          <span data-i18n="csvSeparator"></span>
+          <select id="optSeparator">
+            <option value="auto" data-i18n="sepAuto"></option>
+            <option value="," data-i18n="sepComma"></option>
+            <option value=";" data-i18n="sepSemicolon"></option>
+            <option value="&#9;" data-i18n="sepTab"></option>
+          </select>
+        </label>
+      </div>
+
+      <ul id="itemList" class="items" aria-live="polite"></ul>
+
+      <section id="proSection" class="pro">
+        <div class="pro-head">
+          <h2 data-i18n="proTitle"></h2>
+          <label class="check small"><input type="checkbox" id="selectAll" /> <span data-i18n="selectAll"></span></label>
+          <span id="selectedCount" class="muted"></span>
+        </div>
+
+        <div id="upsell" class="upsell" hidden>
+          <p data-i18n="proLockedText"></p>
+          <div class="upsell-actions">
+            <a id="buyLink" class="btn btn-primary" target="_blank" rel="noopener" data-i18n="buyPro"></a>
+            <button id="haveKeyBtn" class="btn btn-ghost" type="button" data-i18n="haveKey"></button>
+          </div>
+          <form id="licenseForm" class="license-form" hidden>
+            <input id="licenseInput" type="text" autocomplete="off" spellcheck="false" data-i18n-placeholder="licenseKeyPlaceholder" />
+            <button id="activateBtn" class="btn btn-primary" type="submit" data-i18n="activate"></button>
+          </form>
+        </div>
+
+        <fieldset id="proTools" class="pro-tools">
+          <legend data-i18n="cleaningTitle"></legend>
+          <label class="check"><input type="checkbox" id="optRemoveEmpty" /> <span data-i18n="optRemoveEmpty"></span></label>
+          <label class="check"><input type="checkbox" id="optNormalize" /> <span data-i18n="optNormalizeSpaces"></span></label>
+          <label class="check"><input type="checkbox" id="optStripNumeric" /> <span data-i18n="optStripNumeric"></span></label>
+          <div class="regex-row">
+            <input id="optRegex" type="text" spellcheck="false" data-i18n-placeholder="regexPlaceholder" data-i18n-aria="optRegex" />
+            <select id="optRegexMode" data-i18n-aria="optRegex">
+              <option value="keep" data-i18n="regexKeep"></option>
+              <option value="exclude" data-i18n="regexExclude"></option>
+            </select>
+          </div>
+          <div class="export-row">
+            <button id="exportXlsx" class="btn btn-primary" type="button" data-i18n="exportXlsx"></button>
+            <button id="exportJson" class="btn btn-secondary" type="button" data-i18n="exportJson"></button>
+          </div>
+          <div class="preset-row">
+            <span id="presetNote" class="muted"></span>
+            <button id="presetReset" class="link-btn" type="button" data-i18n="presetReset"></button>
+          </div>
+        </fieldset>
+
+        <div id="licenseActive" class="license-active" hidden>
+          <span id="licenseInfo"></span>
+          <button id="removeLicenseBtn" class="link-btn" type="button" data-i18n="removeLicense"></button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span data-i18n="privacyNote"></span>
+      <span class="links">
+        <a id="websiteLink" target="_blank" rel="noopener" data-i18n="linkWebsite"></a>
+        <a id="privacyLink" target="_blank" rel="noopener" data-i18n="linkPrivacy"></a>
+      </span>
+    </footer>
+
+    <div id="toast" class="toast" role="alert" hidden></div>
+
+    <script src="../lib/tablecore.js"></script>
+    <script src="../lib/xlsx-lite.js"></script>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

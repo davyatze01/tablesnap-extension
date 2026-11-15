@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TableSnap popup harness</title>
+  <!-- Dev-only: renders the real popup with stubbed chrome.* APIs against fixture.html.
+       Serve the repo root (python -m http.server 8765) and open /tests/harness/popup_harness.html?lang=it&pro=1 -->
+  <style>
+    html, body { margin: 0; }
+    .harness { display: flex; gap: 16px; align-items: flex-start; padding: 12px; background: #e2e8f0; min-height: 100vh; box-sizing: border-box; }
+    #popupHost { width: 420px; flex-shrink: 0; box-shadow: 0 8px 30px rgba(0,0,0,.25); background: #fff; }
+    iframe#page { flex: 1; height: 760px; border: 1px solid #94a3b8; background: #fff; }
+  </style>
+</head>
+<body>
+<div class="harness">
+  <div id="popupHost"></div>
+  <iframe id="page" src="fixture.html"></iframe>
+</div>
+<script>
+(async () => {
+  const params = new URLSearchParams(location.search);
+  const lang = params.get('lang') || 'en';
+  const messages = await (await fetch(`../../src/_locales/${lang}/messages.json`)).json();
+  const frame = document.getElementById('page');
+  await new Promise((r) => (frame.contentDocument && frame.contentDocument.readyState === 'complete' ? r() : frame.addEventListener('load', r, { once: true })));
+  const fw = frame.contentWindow;
+
+  // --- storage stub
+  const store = {};
+  if (params.get('pro') === '1') store.license = { key: 'TEST-0000-1111', instanceId: 'x', status: 'active', lastValidatedAt: Date.now() };
+  if (params.get('exports')) store.exportCount = Number(params.get('exports'));
+  const storage = {
+    async get(keys) { const out = {}; for (const k of [].concat(keys)) if (k in store) out[k] = JSON.parse(JSON.stringify(store[k])); return out; },
+    async set(o) { Object.assign(store, JSON.parse(JSON.stringify(o))); },
+    async remove(k) { delete store[k]; },
+  };
+  window.__store = store;
+
+  // --- port pair popup <-> page
+  function makePortPair() {
+    const mk = () => ({ _l: [], _d: [], onMessage: { addListener(f) { this.o._l.push(f); } }, onDisconnect: { addListener(f) { this.o._d.push(f); } } });
+    const a = mk(), b = mk();
+    a.onMessage.o = a; a.onDisconnect.o = a; b.onMessage.o = b; b.onDisconnect.o = b;
+    a.postMessage = (m) => b._l.forEach((f) => f(m)); b.postMessage = (m) => a._l.forEach((f) => f(m));
+    a.disconnect = () => b._d.forEach((f) => f()); b.disconnect = () => a._d.forEach((f) => f());
+    a.name = b.name = 'tablesnap-popup';
+    return [a, b];
+  }
+  const pageConnectListeners = [];
+  fw.chrome = { runtime: { onConnect: { addListener: (f) => pageConnectListeners.push(f) } } };
+
+  function i18n(key, subs) {
+    const m = messages[key]; if (!m) return '';
+    let s = m.message; const arr = [].concat(subs ?? []);
+    for (const [name, ph] of Object.entries(m.placeholders || {})) s = s.replace(new RegExp('\\$' + name + '\\$', 'gi'), arr[Number(ph.content.slice(1)) - 1] ?? '');
+    return s;
+  }
+  function loadInto(win, src) { return new Promise((res, rej) => { const s = win.document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; win.document.head.appendChild(s); }); }
+
+  window.chrome = {
+    i18n: { getMessage: i18n, getUILanguage: () => lang },
+    storage: { local: storage },
+    tabs: {
+      query: async () => [{ id: 1, url: 'https://www.example.org/stats' }],
+      connect: () => { const [popupEnd, pageEnd] = makePortPair(); pageConnectListeners.forEach((f) => f(pageEnd)); return popupEnd; },
+    },
+    scripting: {
+      async executeScript({ files, func }) {
+        if (files) { for (const f of files) await loadInto(fw, '../../src/' + f + '?v=' + Date.now()); return [{ result: undefined }]; }
+        return [{ result: JSON.parse(JSON.stringify(fw.TableSnapContent.scan())) }];
+      },
+    },
+    permissions: { request: async () => true },
+  };
+
+  // --- mount real popup markup + scripts
+  const html = await (await fetch('../../src/popup/popup.html')).text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  doc.querySelectorAll('script').forEach((s) => s.remove());
+  const base = new URL('../../src/popup/', location.href);
+  doc.querySelectorAll('[src]').forEach((el) => el.setAttribute('src', new URL(el.getAttribute('src'), base).href));
+  const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = new URL('popup.css', base).href; document.head.appendChild(css);
+  const host = document.getElementById('popupHost');
+  host.innerHTML = doc.body.innerHTML;
+  document.body.style.width = 'auto';
+  await loadInto(window, '../../src/lib/tablecore.js');
+  await loadInto(window, '../../src/lib/xlsx-lite.js');
+  await import('../../src/popup/popup.js');
+})();
+</script>
+</body>
+</html>
